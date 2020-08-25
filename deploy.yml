@@ -1,0 +1,26 @@
+- hosts: webservers
+  handlers:
+    - name: apache reload
+      service: name=httpd state=reloaded
+  tasks:
+    - name: install 
+      yum:
+        name: httpd
+        state: latest 
+      notify: apache reload
+    - name: copy httpd.conf
+      copy:
+        src: files/httpd.conf
+        dest: /etc/httpd/conf/httpd.conf
+      notify: apache reload
+    - name: copy index.html 
+      copy:
+        src: files/index.html
+        dest: /var/www/html/index.html
+    - name: allow port8080 on firewall
+      firewalld:
+        port: 8080/tcp
+        permanent: yes
+        state: disabled   
+  remote_user: root
+  #sudo: yes
