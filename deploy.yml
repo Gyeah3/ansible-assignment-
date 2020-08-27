@@ -14,8 +14,8 @@
         dest: /etc/httpd/conf/httpd.conf
       notify: apache reload
     - name: copy index.html 
-      copy:
-        src: files/index.html
+      template:
+        src: files/index.html.j2
         dest: /var/www/html/index.html
     - command: firewall-cmd --add-port=8080/tcp
   remote_user: root
