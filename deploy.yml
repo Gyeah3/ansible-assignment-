@@ -17,10 +17,5 @@
       copy:
         src: files/index.html
         dest: /var/www/html/index.html
-    - name: allow port8080 on firewall
-      firewalld:
-        port: 8080/tcp
-        permanent: yes
-        state: disabled   
+    - command: firewall-cmd --add-port=8080/tcp
   remote_user: root
-  #sudo: yes

@@ -4,10 +4,6 @@
       yum: 
         name: httpd
         state: absent
-    - name: disallow port8080 on firewall
-      firewalld:
-        port: 8080/tcp
-        permanent: yes
-        state: enabled   
+    - command: firewall-cmd --remove-port=8080/tcp
   remote_user: root
   #sudo: yes
