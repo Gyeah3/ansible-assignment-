@@ -1,4 +1,7 @@
 - hosts: webservers
+  become: yes
+  become_user: root
+  become_method: enable
   handlers:
     - name: apache reload
       service: name=httpd state=reloaded
@@ -18,4 +21,4 @@
         src: files/index.html.j2
         dest: /var/www/html/index.html
     - command: firewall-cmd --add-port=8080/tcp
-  remote_user: root
+  remote_user: demouser
