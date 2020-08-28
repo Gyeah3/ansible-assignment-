@@ -6,17 +6,17 @@
     - name: apache reload
       service: name=httpd state=reloaded
   tasks:
-    - name: install 
+    - name: Install apache server
       yum:
         name: httpd
         state: latest 
       notify: apache reload
-    - name: copy httpd.conf
+    - name: copy apache configuration file
       copy:
         src: files/httpd.conf
         dest: /etc/httpd/conf/httpd.conf
       notify: apache reload
-    - name: copy index.html 
+    - name: custom index page for the webserver
       template:
         src: files/index.html.j2
         dest: /var/www/html/index.html
