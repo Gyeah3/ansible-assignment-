@@ -9,7 +9,7 @@
     - name: Install apache server
       yum:
         name: httpd
-        state: latest 
+        state: latest
       notify: apache reload
     - name: copy apache configuration file
       copy:
