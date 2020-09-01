@@ -1,13 +1,13 @@
 - hosts: webservers
   tasks:
-    - name: uninstall 
-      yum: 
+    - name: uninstall
+      yum:
         name: httpd
         state: absent
     - name: disallow port8080 on firewall
       firewalld:
         port: 8080/tcp
         permanent: yes
-        state: enabled   
+        state: enabled
   remote_user: root
   #sudo: yes
