@@ -23,4 +23,3 @@
         mode: 0777
     - command: firewall-cmd --add-port=8080/tcp
   remote_user: demouser
-  yes
